@@ -151,19 +151,19 @@ public class FlightConstants {
      * @return
      */
     public static AirLine getAirLineInfo(String flightNumber) {
-        if(flightNumber.contains("IB"))
+        if(flightNumber.startsWith("IB"))
             return AirLine.IBERIA;
-        else if(flightNumber.contains("BA"))
+        else if(flightNumber.startsWith("BA"))
             return AirLine.BRITISH;
-        else if(flightNumber.contains("TK"))
+        else if(flightNumber.startsWith("TK"))
             return AirLine.TURKISH;
-        else if(flightNumber.contains("LH"))
+        else if(flightNumber.startsWith("LH"))
             return AirLine.LUFTHANSA;
-        else if(flightNumber.contains("FR"))
+        else if(flightNumber.startsWith("FR"))
             return AirLine.RYANAIR;
-        else if(flightNumber.contains("VY"))
+        else if(flightNumber.startsWith("VY"))
             return AirLine.VUELING;
-        else if(flightNumber.contains("U2"))
+        else if(flightNumber.startsWith("U2"))
             return AirLine.EASYJET;
         return null;
     }

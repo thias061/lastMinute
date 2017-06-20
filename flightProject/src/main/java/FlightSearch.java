@@ -28,8 +28,8 @@ import main.java.model.Search;
 public class FlightSearch {
 
     public static final String SEPARATOR = ",";
-    public static final String QUOTE = "\"";
     public static final long MILLISECS_PER_DAY = 86400000;
+    
     /**
      * @param args
      */
@@ -72,16 +72,18 @@ public class FlightSearch {
                             Integer infantNumber = search.getInfantNumber();
 
                             if (adultNumber != null) {
+                                //full price (i.e. price resulting from the *days to departure date* rule) 
                                 finalPrice = finalPrice.add(adultPrice.multiply(new BigDecimal(adultNumber)));
                             }
 
                             if (childNumber != null) {
+                                //33% discount of the price calculated according to the *days to departure date* rule  
                                 BigDecimal childPrice = adultPrice.multiply(new BigDecimal(67).divide(new BigDecimal(100)));
                                 finalPrice = finalPrice.add(childPrice.multiply(new BigDecimal(childNumber)));
                             }
 
                             if (infantNumber != null) {
-                                //Getting infant price from enum
+                                //fixed price depending on the airline. Rule *days to departure date* is not applied for infants
                                 BigDecimal infantPrice = airLineInfo.getInfantPrice();
                                 finalPrice = finalPrice.add(infantPrice.multiply(new BigDecimal(infantNumber)));
                             }
@@ -107,11 +109,7 @@ public class FlightSearch {
             } else {
                 System.out.println(FlightConstants.NO_FLIGHT_MESSAGE);
             }
-        } catch (NumberFormatException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return flightResults;
@@ -187,25 +185,28 @@ public class FlightSearch {
      * @throws NumberFormatException 
      */
     private static ArrayList<Flight> getFlightListFromCSV(String fileInput) 
-            throws NumberFormatException, IOException {
+            throws IOException {
         
-        // TODO blindar
         ArrayList<Flight> list = new ArrayList<Flight>();
         BufferedReader br = null;
         br = new BufferedReader(new FileReader(fileInput));
         
-        String line ;
+        String line;
         
         while ((line = br.readLine()) != null) {
-
-            String[] fields = line.split(SEPARATOR);
-            Flight flight = new Flight();
-            flight.setOrigin(fields[0]);
-            flight.setDestination(fields[1]);
-            flight.setNumber(fields[2]);
-            flight.setPrice(new BigDecimal(fields[3]));
-
-            list.add(flight);
+            //If there is some non numeric price in the csv, 
+            //we don't load it into the list 
+            try {
+                String[] fields = line.split(SEPARATOR);
+                Flight flight = new Flight();
+                flight.setOrigin(fields[0]);
+                flight.setDestination(fields[1]);
+                flight.setNumber(fields[2]);
+                flight.setPrice(new BigDecimal(fields[3]));
+                list.add(flight);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
         }
 
         br.close();
