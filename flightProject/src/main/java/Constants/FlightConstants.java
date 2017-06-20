@@ -1,0 +1,170 @@
+/*
+ * Creation : 16 juin 2017
+ */
+package main.java.Constants;
+
+import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+public class FlightConstants {
+
+    /** Message indicating that there is no flight for this search*/
+    public static final String NO_FLIGHT_MESSAGE = "No flight available for this search";
+    
+    /** Message indicating past departure date*/
+    public static final String DATE_AFTER_MESSAGE = "Incorrect departure date...please put a departure date after today";
+    
+    /** Message indicating no price founded for flight*/
+    public static final String NO_PRICE_MESSAGE = "No price founded for flight ";
+    
+    /** Name of the Madrid airport */
+    public static final String MAD = "Madrid";
+    
+    /** Name of the Barcelona airport */
+    public static final String BCN = "Barcelona";
+    
+    /** Name of the London airport */
+    public static final String LHR = "London";
+    
+    /** Name of the Paris airport */
+    public static final String CDG = "Paris";
+    
+    /** Name of the Frankfurt airport */
+    public static final String FRA = "Frankfurt";
+    
+    /** Name of the Istanbul airport */
+    public static final String IST = "Istanbul";
+    
+    /** Name of the Amsterdam airport */
+    public static final String AMS = "Amsterdam";
+    
+    /** Name of the Rome airport */
+    public static final String FCO = "Rome";
+    
+    /** Name of the Copenhagen airport */
+    public static final String CPH = "Copenhagen";
+    
+    /** Couple code airport code/airport name*/
+    public static final Map<String, String> AIRPORT = Collections.unmodifiableMap(new HashMap<String, String>() {
+        {
+            put("MAD", "Madrid");
+            put("BCN", "Barcelona");
+            put("LHR", "London");
+            put("CDG", "Paris");
+            put("FRA", "Frankfurt");
+            put("IST", "Istanbul");
+            put("AMS", "Amsterdam");
+            put("FCO", "Rome");
+            put("CPH", "Copenhagen");
+        }
+    });
+
+    
+    public enum AirLine {
+
+        /** The Iberia info. */
+        IBERIA("IBERIA", new BigDecimal(10)),
+        
+        /** The British Airways info. */
+        BRITISH("BRITISH AIRWAYS", new BigDecimal(15)),
+        
+        /** The Lufthansa info. */
+        LUFTHANSA("LUFTHANSA", new BigDecimal(7)),
+        
+        /** The Ryanair info. */
+        RYANAIR("RYANAIR", new BigDecimal(20)),
+        
+        /** The Turkish Airlines info. */
+        TURKISH("TURKISH AIRLINES", new BigDecimal(5)),
+        
+        /** The Easyjet info. */
+        EASYJET("EASYJET", new BigDecimal(19.90)),
+        
+        /** The Vueling info. */
+        VUELING("VUELING", new BigDecimal(10));
+        
+        /** Flight name*/
+        private String flightName;
+
+        /** Infant price*/
+        private BigDecimal infantPrice;
+        
+        /**
+         * Instantiates a new document status.
+         * 
+         * @param code
+         *            the code
+         * @param label
+         *            the label
+         */
+        AirLine(String flightName, BigDecimal infantPrice) {
+            this.setFlightName(flightName);
+            this.setInfantPrice(infantPrice);
+        }
+
+
+        /**
+         * Getter flightCode
+         * 
+         * @return the flightCode
+         */
+        public String getFlightName() {
+            return flightName;
+        }
+
+        /**
+         * Setter flightCode
+         * 
+         * @param flightCode the flightCode to set
+         */
+        public void setFlightName(String flightName) {
+            this.flightName = flightName;
+        }
+
+
+        /**
+         * Getter infantPrice
+         * 
+         * @return the infantPrice
+         */
+        public BigDecimal getInfantPrice() {
+            return infantPrice;
+        }
+
+
+        /**
+         * Setter infantPrice
+         * 
+         * @param infantPrice the infantPrice to set
+         */
+        public void setInfantPrice(BigDecimal infantPrice) {
+            this.infantPrice = infantPrice;
+        }
+
+    }
+
+    /**
+     * Getting airline from flight number
+     * @param flightNumber
+     * @return
+     */
+    public static AirLine getAirLineInfo(String flightNumber) {
+        if(flightNumber.contains("IB"))
+            return AirLine.IBERIA;
+        else if(flightNumber.contains("BA"))
+            return AirLine.BRITISH;
+        else if(flightNumber.contains("TK"))
+            return AirLine.TURKISH;
+        else if(flightNumber.contains("LH"))
+            return AirLine.LUFTHANSA;
+        else if(flightNumber.contains("FR"))
+            return AirLine.RYANAIR;
+        else if(flightNumber.contains("VY"))
+            return AirLine.VUELING;
+        else if(flightNumber.contains("U2"))
+            return AirLine.EASYJET;
+        return null;
+    }
+}
