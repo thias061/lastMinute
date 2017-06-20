@@ -96,8 +96,8 @@ public class FlightSearch {
                             //Rounding finalPrice with 2 decimals
                             finalPrice = finalPrice.setScale(2, BigDecimal.ROUND_FLOOR);
                             flightResult.setPrice(finalPrice);
-
                             flightResults.add(flightResult);
+                            
                         } else {
                             System.out.println(FlightConstants.NO_PRICE_MESSAGE + flight.getNumber());
                         }

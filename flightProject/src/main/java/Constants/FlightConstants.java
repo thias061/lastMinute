@@ -61,7 +61,7 @@ public class FlightConstants {
         }
     });
 
-    
+    /** Using enum to take couple code Company/Infant price from flight number (also can be used a HashMap)*/
     public enum AirLine {
 
         /** The Iberia info. */
