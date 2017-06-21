@@ -194,8 +194,8 @@ public class FlightSearchTest {
      * 1 Adult
      * 1 Child
      * 3 days to departure
-     * U22593 -> (218 * 120%) + 67% * (218 * 120%) = 436.87
-     * FR7949 -> (176 * 120%) + 67% * (176 * 120%) = 352.70
+     * U22593 = 436.87
+     * FR7949 = 352.70
      */
     @Test
     public void test1Adult1ChildCPHToBCN() {
@@ -224,8 +224,10 @@ public class FlightSearchTest {
             BigDecimal price = result.getPrice();
             
             if (result.getNumber().equals("U22593")) {
+            	//(218 * 120%) + 67% * (218 * 120%)
                 expectedPrice = new BigDecimal(436.87).setScale(2, BigDecimal.ROUND_HALF_UP);
             } else if (result.getNumber().equals("FR7949")) {
+            	//(176 * 120%) + 67% * (176 * 120%)
                 expectedPrice = new BigDecimal(352.70).setScale(2, BigDecimal.ROUND_HALF_UP);
             } 
             
@@ -238,8 +240,8 @@ public class FlightSearchTest {
      * 1 Adult
      * 1 Infant
      * 10 days to departure
-     * IB8688 -> (150 * 120%) + 10 = 190
-     * LH1115 -> (160 * 120%) + 7 = 199
+     * IB8688  = 190
+     * LH1115  = 199
      */
     @Test
     public void test1Adult1InfantISTToMAD() {
@@ -268,8 +270,10 @@ public class FlightSearchTest {
             BigDecimal price = result.getPrice();
             
             if (result.getNumber().equals("IB8688")) {
+            	//(150 * 120%) + 10
                 expectedPrice = new BigDecimal(190).setScale(2, BigDecimal.ROUND_HALF_UP);
             } else if (result.getNumber().equals("LH1115")) {
+            	//(160 * 120%) + 7
                 expectedPrice = new BigDecimal(199).setScale(2, BigDecimal.ROUND_HALF_UP);
             } 
             
@@ -283,8 +287,8 @@ public class FlightSearchTest {
      * 1 Child
      * 1 Infant
      * 16 days to departure
-     * VY4335 -> (158 * 100%) + 67% * (158) + 10 = 273.86
-     * VY2974 -> (111 * 100%) + 67% * (111) + 10 = 195.37
+     * VY4335  = 273.86
+     * VY2974  = 195.37
      */
     @Test
     public void test1Adult1Child1InfantFCOToCDG() {
@@ -313,8 +317,10 @@ public class FlightSearchTest {
             BigDecimal price = result.getPrice();
             
             if (result.getNumber().equals("VY4335")) {
+            	//(158 * 100%) + 67% * (158) + 10
                 expectedPrice = new BigDecimal(273.86).setScale(2, BigDecimal.ROUND_HALF_UP);
             } else if (result.getNumber().equals("VY2974")) {
+            	//(111 * 100%) + 67% * (111) + 10
                 expectedPrice = new BigDecimal(195.37).setScale(2, BigDecimal.ROUND_HALF_UP);
             } 
             
@@ -329,9 +335,9 @@ public class FlightSearchTest {
      * 1 Infant
      * 20 days to departure
      * 
-     * BA8162 -> 2 * (205 * 100%) + (67% * 205) + 15 = 562.35
-     * IB9443 -> 2 * (254 * 100%) + (67% * 254) + 10 = 688.18
-     * TK3167 -> 2 * (118 * 100%) + (67% * 118) + 5 = 320.06
+     * BA8162  = 562.35
+     * IB9443  = 688.18
+     * TK3167  = 320.06
      */
     @Test
     public void test2Adults1Child1InfantFRAToLHR() {
@@ -360,10 +366,13 @@ public class FlightSearchTest {
             BigDecimal price = result.getPrice();
             
             if (result.getNumber().equals("BA8162")) {
+            	//2 * (205 * 100%) + (67% * 205) + 15
                 expectedPrice = new BigDecimal(562.35).setScale(2, BigDecimal.ROUND_HALF_UP);
             } else if (result.getNumber().equals("IB9443")) {
+            	//2 * (254 * 100%) + (67% * 254) + 10
                 expectedPrice = new BigDecimal(688.18).setScale(2, BigDecimal.ROUND_HALF_UP);
             } else if (result.getNumber().equals("TK3167")) {
+            	//2 * (118 * 100%) + (67% * 118) + 5
                 expectedPrice = new BigDecimal(320.06).setScale(2, BigDecimal.ROUND_HALF_UP);
             }
             
@@ -377,9 +386,9 @@ public class FlightSearchTest {
      * 2 Infants
      * 30 days to departure
      * 
-     * IB4737 -> 3 * (110 * 100%) + (2 * 10) = 350
-     * BA9561 -> 3 * (253 * 100%) + (2 * 15) = 789
-     * BA6657 -> 3 * (122 * 100%) + (2 * 15) = 396
+     * IB4737  = 350
+     * BA9561  = 789
+     * BA6657  = 396
      */
     @Test
     public void test3Adults1InfantLHRToAMS() {
@@ -408,10 +417,13 @@ public class FlightSearchTest {
             BigDecimal price = result.getPrice();
             
             if (result.getNumber().equals("IB4737")) {
+            	//3 * (110 * 100%) + (2 * 10)
                 expectedPrice = new BigDecimal(350).setScale(2, BigDecimal.ROUND_HALF_UP);
             } else if (result.getNumber().equals("BA9561")) {
+            	//3 * (253 * 100%) + (2 * 15)
                 expectedPrice = new BigDecimal(789).setScale(2, BigDecimal.ROUND_HALF_UP);
             } else if (result.getNumber().equals("BA6657")) {
+            	//3 * (122 * 100%) + (2 * 15)
                 expectedPrice = new BigDecimal(396).setScale(2, BigDecimal.ROUND_HALF_UP);
             }
             
@@ -426,7 +438,7 @@ public class FlightSearchTest {
      * 1 Infant
      * 60 days to departure
      * 
-     * BA8982 -> (171 * 80%) + 2 * 67% * (171 * 80%) + 15 = 335.11
+     * BA8982 = 335.11
      */
     @Test
     public void test1Adult2Children1InfantMADToFRA() {
@@ -455,6 +467,7 @@ public class FlightSearchTest {
             BigDecimal price = result.getPrice();
             
             if (result.getNumber().equals("BA8982")) {
+            	//(171 * 80%) + 2 * 67% * (171 * 80%) + 15
                 expectedPrice = new BigDecimal(335.11).setScale(2, BigDecimal.ROUND_HALF_UP);
             } 
             

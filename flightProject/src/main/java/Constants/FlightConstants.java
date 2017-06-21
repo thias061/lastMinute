@@ -19,33 +19,6 @@ public class FlightConstants {
     /** Message indicating no price founded for flight*/
     public static final String NO_PRICE_MESSAGE = "No price founded for flight ";
     
-    /** Name of the Madrid airport */
-    public static final String MAD = "Madrid";
-    
-    /** Name of the Barcelona airport */
-    public static final String BCN = "Barcelona";
-    
-    /** Name of the London airport */
-    public static final String LHR = "London";
-    
-    /** Name of the Paris airport */
-    public static final String CDG = "Paris";
-    
-    /** Name of the Frankfurt airport */
-    public static final String FRA = "Frankfurt";
-    
-    /** Name of the Istanbul airport */
-    public static final String IST = "Istanbul";
-    
-    /** Name of the Amsterdam airport */
-    public static final String AMS = "Amsterdam";
-    
-    /** Name of the Rome airport */
-    public static final String FCO = "Rome";
-    
-    /** Name of the Copenhagen airport */
-    public static final String CPH = "Copenhagen";
-    
     /** Couple code airport code/airport name*/
     public static final Map<String, String> AIRPORT = Collections.unmodifiableMap(new HashMap<String, String>() {
         {
