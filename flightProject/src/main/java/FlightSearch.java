@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import main.java.Constants.FlightConstants;
-import main.java.Constants.FlightConstants.AirLine;
+import main.java.constants.FlightConstants;
+import main.java.constants.FlightConstants.AirLine;
 import main.java.model.Flight;
 import main.java.model.Search;
 

@@ -1,7 +1,7 @@
 /*
  * Creation : 16 juin 2017
  */
-package main.java.Constants;
+package main.java.constants;
 
 import java.math.BigDecimal;
 import java.util.Collections;
