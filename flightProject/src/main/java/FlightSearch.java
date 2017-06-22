@@ -192,40 +192,37 @@ public class FlightSearch {
         
         ArrayList<Flight> list = new ArrayList<Flight>();
         BufferedReader br = null;
-        try
-        {
-            URL url = FlightSearch.class.getResource("/resources/flights.csv");
-            //Null url significate that the file doesn't exist into this path 
-            if (url != null) {
-		File file = new File(url.toURI());
-		br = new BufferedReader(new FileReader(file));
-		String line;
-		while ((line = br.readLine()) != null) {
-			//If there is some non numeric price in the csv, 
-			//we don't load it into the list 
-			try {
-				String[] fields = line.split(SEPARATOR);
-				Flight flight = new Flight();
-				flight.setOrigin(fields[0]);
-				flight.setDestination(fields[1]);
-				flight.setNumber(fields[2]);
-				flight.setPrice(new BigDecimal(fields[3]));
-				list.add(flight);
-			    } catch (NumberFormatException e) {
-				e.printStackTrace();
-			    }
-		} 
-	    }
-	    else {
-		System.out.println(FlightConstants.WRONG_PATH_FLIGHT_DATABASE);
-	    }
-        }
-	catch (URISyntaxException e1) {
-	    e1.printStackTrace();	
-	}
+		try {
+			URL url = FlightSearch.class.getResource("/resources/flights.csv");
+			// Null url significate that the file doesn't exist into this path
+			if (url != null) {
+				File file = new File(url.toURI());
+				br = new BufferedReader(new FileReader(file));
+				String line;
+				while ((line = br.readLine()) != null) {
+					// If there is some non numeric price in the csv,
+					// we don't load it into the list
+					try {
+						String[] fields = line.split(SEPARATOR);
+						Flight flight = new Flight();
+						flight.setOrigin(fields[0]);
+						flight.setDestination(fields[1]);
+						flight.setNumber(fields[2]);
+						flight.setPrice(new BigDecimal(fields[3]));
+						list.add(flight);
+					} catch (NumberFormatException e) {
+						e.printStackTrace();
+					}
+				}
+			} else {
+				System.out.println(FlightConstants.WRONG_PATH_FLIGHT_DATABASE);
+			}
+		} catch (URISyntaxException e1) {
+			e1.printStackTrace();
+		}
 
-        br.close();
-        return list;
-    }
+		br.close();
+		return list;
+	}
 
 }
