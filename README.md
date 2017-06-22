@@ -1,4 +1,3 @@
-# lastMinute
 # Flight search
 
 ## Problem
