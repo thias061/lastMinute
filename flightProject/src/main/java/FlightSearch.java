@@ -216,9 +216,12 @@ public class FlightSearch {
 			    }
 		} 
 	    }
+	    else {
+		System.out.println(FlightConstants.WRONG_PATH_FLIGHT_DATABASE);
+	    }
         }
 	catch (URISyntaxException e1) {
-	    System.out.println(FlightConstants.WRONG_PATH_FLIGHT_DATABASE);
+	    e1.printStackTrace();	
 	}
 
         br.close();
