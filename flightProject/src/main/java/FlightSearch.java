@@ -164,7 +164,7 @@ public class FlightSearch {
         ArrayList<Flight> flightList;
         ArrayList<Flight> result = new ArrayList<Flight>();
         //Getting flight list from csv
-        flightList = getFlightListFromCSV("flights.csv");
+        flightList = getFlightListFromCSV("/resources/flights.csv");
         
         for(Flight flight : flightList)
         {
@@ -194,7 +194,7 @@ public class FlightSearch {
         BufferedReader br = null;
         try
         {
-            URL url = FlightSearch.class.getResource("/resources/flights.csv");
+            URL url = FlightSearch.class.getResource(fileInput);
             File file = new File(url.toURI());
             br = new BufferedReader(new FileReader(file));
             String line;
