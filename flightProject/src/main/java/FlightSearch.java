@@ -213,8 +213,8 @@ public class FlightSearch {
 					} catch (NumberFormatException e) {
 						e.printStackTrace();
 					}
-					br.close();
 				}
+				br.close();
 			} else {
 				System.out.println(FlightConstants.WRONG_PATH_FLIGHT_DATABASE);
 			}
