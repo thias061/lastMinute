@@ -19,6 +19,9 @@ public class FlightConstants {
     /** Message indicating no price founded for flight*/
     public static final String NO_PRICE_MESSAGE = "No price founded for flight ";
     
+    /** Message indicating there is no .CSV file present*/
+    public static final String WRONG_PATH_FLIGHT_DATABASE = null;
+    
     /** Couple code airport code/airport name*/
     public static final Map<String, String> AIRPORT = Collections.unmodifiableMap(new HashMap<String, String>() {
         {

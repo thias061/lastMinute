@@ -7,9 +7,12 @@
 package main.java;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -189,25 +192,32 @@ public class FlightSearch {
         
         ArrayList<Flight> list = new ArrayList<Flight>();
         BufferedReader br = null;
-        br = new BufferedReader(new FileReader(fileInput));
-        
-        String line;
-        
-        while ((line = br.readLine()) != null) {
-            //If there is some non numeric price in the csv, 
-            //we don't load it into the list 
-            try {
-                String[] fields = line.split(SEPARATOR);
-                Flight flight = new Flight();
-                flight.setOrigin(fields[0]);
-                flight.setDestination(fields[1]);
-                flight.setNumber(fields[2]);
-                flight.setPrice(new BigDecimal(fields[3]));
-                list.add(flight);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
+        try
+        {
+            URL url = FlightSearch.class.getResource("/resources/flights.csv");
+            File file = new File(url.toURI());
+            br = new BufferedReader(new FileReader(file));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                //If there is some non numeric price in the csv, 
+                //we don't load it into the list 
+                try {
+                    String[] fields = line.split(SEPARATOR);
+                    Flight flight = new Flight();
+                    flight.setOrigin(fields[0]);
+                    flight.setDestination(fields[1]);
+                    flight.setNumber(fields[2]);
+                    flight.setPrice(new BigDecimal(fields[3]));
+                    list.add(flight);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
             }
         }
+		catch (URISyntaxException e1) {
+			System.out.println(FlightConstants.WRONG_PATH_FLIGHT_DATABASE);
+		}
 
         br.close();
         return list;
